@@ -1,0 +1,32 @@
+{
+  "name": "is",
+  "version": "0.0.1",
+  "description": "Convenient predicates for Javascript",
+  "main": "is.js",
+  "scripts": {
+    "test": "eslint is.js; mocha --reporter=progress --recursive",
+    "doc": "node ./node_modules/panthrdoc/run.js ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PanthR/is.git"
+  },
+  "keywords": [
+    "predicate",
+    "boolean",
+    "test",
+    "function"
+  ],
+  "author": "skiadas@hanover.edu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PanthR/is/issues"
+  },
+  "homepage": "https://github.com/PanthR/is",
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "eslint": "^0.7.4",
+    "mocha": "~1.21.3",
+    "panthrdoc": "*"
+  }
+}
