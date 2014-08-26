@@ -198,6 +198,18 @@ define(function(require) {
     */
    is.absolutely = is.its(Math.abs);
 
+   /**
+    * Return a predicate that checks if its argument is "in" the `container`.
+    * If the `container` is an array, it simply checks its elements.
+    * If the `container` is an object, it uses `hasOwnProperty`.
+    */
+   is.in = function(container) {
+      if (Array.isArray(container)) {
+         return predify(function(n) { return container.indexOf(n) > -1; });
+      }
+      return predify(function(n) { return container.hasOwnProperty(n); });
+   };
+
    /** ## Predicate combinations */
 
    /**
