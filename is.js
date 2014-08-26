@@ -128,6 +128,17 @@ define(function(require) {
     */
    is.nonnegative = is.le(0);
 
+   /**
+    * Return a predicate to test if its argument is between `a` and `b`. If `inclusive` is true,
+    * the predicate accepts numbers equal to `a`, `b`. Defaults to false.
+    * `a` and `b` can be in either order.
+    */
+   is.between = function(a, b, inclusive) {
+      if (b < a) { var temp = a; a = b; b = temp; }
+      return predify(inclusive ? function(n) { return n >= a && n <= b; } :
+                                 function(n) { return n > a && n < b; }
+      );
+   };
    // String predicates
 
    /**

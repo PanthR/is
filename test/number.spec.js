@@ -110,4 +110,20 @@ describe('is.not tests', function() {
       expect(is.not.le(5)(5)).to.not.be.ok;
       expect(is.not.le(5)(7)).to.be.ok;
    });
+   it('interval tests', function() {
+      expect(is.between(1, 2)(1.5)).to.be.ok;
+      expect(is.between(1, 2)(1)).to.not.be.ok;
+      expect(is.between(1, 2)(2)).to.not.be.ok;
+      expect(is.between(1, 2)(-1.5)).to.not.be.ok;
+      expect(is.between(1, 2)(2.5)).to.not.be.ok;
+      expect(is.its(Math.abs).between(1, 2)(-1.5)).to.be.ok;
+      expect(is.between(1, 2, true)(1.5)).to.be.ok;
+      expect(is.between(1, 2, true)(1)).to.be.ok;
+      expect(is.between(1, 2, true)(2)).to.be.ok;
+      expect(is.between(2, 1)(1.5)).to.be.ok;
+      expect(is.between(2, 1)(1)).to.not.be.ok;
+      expect(is.between(2, 1)(2)).to.not.be.ok;
+      expect(is.between(2, 1)(-1.5)).to.not.be.ok;
+      expect(is.between(2, 1)(2.5)).to.not.be.ok;
+   });
 });
