@@ -28,17 +28,24 @@ define(function(require) {
 
    /**
     * A predicate that tests if its argument has a given `typeof`.
+    *
+    *     is.typeof('string')('hi there!');  // true
     */
    is.typeof = function(typ) {
       return predify(function(n) { return typeof n === typ; });
    };
    /**
     * A predicate testing that its argument is a function
+    *
+    *     is.function(is.function); // true
     */
    is.function = is.typeof('function');
    /**
     * A predicate testing that its argument is a number
     * (including infinity, NaN)
+    *
+    *     is.number(23);          // true
+    *     is.number('hi there!'); // false
     */
    is.number = is.typeof('number');
    /**
@@ -57,6 +64,9 @@ define(function(require) {
    /* eslint-disable no-self-compare */
    /**
     * A predicate testing that its argument is exactly NaN
+    *
+    *     is.nan(NaN);  // true
+    *     is.nan(null); //false
     */
    is.nan = predify(function(n) { return n !== n; });
    /* eslint-enable */
@@ -75,6 +85,9 @@ define(function(require) {
    /**
     * A predicate testing that its argument is a "real" number
     * i.e. a number that is not NaN nor Infinity
+    *
+    *     is.finite(23);  // true
+    *     is.finite(NaN); // false
     */
    is.finite = predify(function(n) {
       return is.number(n) && !is.nan(n) && !is.infinity(n);
@@ -87,12 +100,19 @@ define(function(require) {
 
    /**
     * Return a predicate testing that its argument is triple equal to `m`.
+    *
+    *     is.eq(5)(3); // false
+    *     is.eq(5)(5); // true
     */
    is.eq = function(m) { return predify(function(n) { return n === m; }); };
 
    /**
     * Return a predicate testing that its argument is (finite and)
     * greater than to `m`.
+    *
+    *     is.gt(5)(5.2);      // true
+    *     is.gt(5)(5);        // false
+    *     is.gt(5)(Infinity); // false
     */
    is.gt = function(m) { return predify(function(n) { return is.finite(n) && n > m; }); };
    /**
@@ -132,6 +152,9 @@ define(function(require) {
     * Return a predicate to test if its argument is between `a` and `b`. If `inclusive` is true,
     * the predicate accepts numbers equal to `a`, `b`. Defaults to false.
     * `a` and `b` can be in either order.
+    *
+    *     [1, 2, 3, 4, 5].filter(is.between(2, 5));       // [3, 4]
+    *     [1, 2, 3, 4, 5].filter(is.between(2, 5, true)); // [2, 3, 4, 5]
     */
    is.between = function(a, b, inclusive) {
       if (b < a) { var temp = a; a = b; b = temp; }
@@ -158,6 +181,8 @@ define(function(require) {
    /**
     * Return a predicate testing that its argument starts with
     * the string `sub`
+    *
+    *     is.startingWith('_')('_hi'); // true
     */
    is.startingWith = function(sub) {
       return predify(function(n) { return n.indexOf(sub) === 0; });
@@ -165,6 +190,8 @@ define(function(require) {
    /**
     * Return a predicate testing that its argument ends in
     * the string `sub`
+    *
+    *     is.endingIn('.html')(filename);
     */
    is.endingIn = function(sub) {
       return predify(function(n) { return n.lastIndexOf(sub) === n.length - sub.length; });
@@ -178,6 +205,13 @@ define(function(require) {
     * If `prop` is a function rather than a string, (e.g. Math.abs),
     * then the follow-up predicates will be applied to the result
     * of that function on their argument.
+    *
+    *     // Test if obj.name starts with 'Vector'
+    *     is.its('name').startingWith('Vector')(obj);
+    *     // Is the array of length at least 2?
+    *     is.its('length').ge(2)(array);
+    *     // Is the string parsable to a positive integer?
+    *     is.its(parseInt).ge(0)(string);
     */
    is.its = function its(prop) {
       var wrapper;
@@ -210,30 +244,36 @@ define(function(require) {
       return predify(function(n) { return container.hasOwnProperty(n); });
    };
 
-   /** ## Predicate combinations */
+   /* ## Predicate combinations */
 
    /**
     * Set a context so that follow-up predicates will negate their result before returning
+    *
+    *     is.not.between(2, 5)(1); // true
+    *     is.not.between(2, 5)(3); // false
     */
    is.not = enrich(function(pred) { return predify(function(n) { return !pred(n); }); }, is);
 
-   /** Create a predicate from the disjunction of its arguments. */
+   /**
+    * Create a predicate from the disjunction of its arguments.
+    *
+    *     is.or(is.positive, is.negative); // true for all non-zero numbers
+    */
    is.or = function(preds) {
       // Arguments can be simple predicates or arrays of predicates
       preds = Array.prototype.concat.apply([], Array.prototype.slice.call(arguments));
       return conjunct(preds);
    };
-   /** Synonym for `is.or` */
-   is.any = is.or;
-   /** `is.all` conjuncts its arguments.
+   /**
+    * `is.and` conjuncts its arguments.
     * Arguments can be simple predicates or arrays of predicates
+    *
+    *     is.and(is.ge(2), is.le(5)); // same as is.between(2, 5, true)
     */
-   is.all = function(preds) {
+   is.and = function(preds) {
       preds = Array.prototype.concat.apply([], Array.prototype.slice.call(arguments));
       return disjunct(preds);
    };
-   /** Synonym for `is.all` */
-   is.and = is.all;
 
 
 

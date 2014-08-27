@@ -11,71 +11,82 @@
       </h1>
     </div>
     <div id="sidebar">
+      <div>
+        <h3>Module Index</h3>
       <ul>
         
-        <a href="#is.typeof"><li><code>is.typeof</code></li></a>
+        <a href="is.html"><li><code>is</code></li></a>
         
-        <a href="#is.function"><li><code>is.function</code></li></a>
+      </ul>
+      </div>
+      <div>
+        <h3>Contents</h3>
+      <ul>
         
-        <a href="#is.number"><li><code>is.number</code></li></a>
+        <a href="#is.absolutely"><li><code>is.absolutely</code></li></a>
+        
+        <a href="#is.and"><li><code>is.and</code></li></a>
         
         <a href="#is.array"><li><code>is.array</code></li></a>
         
-        <a href="#is.missing"><li><code>is.missing</code></li></a>
-        
-        <a href="#is.nan"><li><code>is.nan</code></li></a>
-        
-        <a href="#is.na"><li><code>is.na</code></li></a>
-        
-        <a href="#is.infinity"><li><code>is.infinity</code></li></a>
-        
-        <a href="#is.finite"><li><code>is.finite</code></li></a>
-        
-        <a href="#is.integer"><li><code>is.integer</code></li></a>
-        
-        <a href="#is.eq"><li><code>is.eq</code></li></a>
-        
-        <a href="#is.gt"><li><code>is.gt</code></li></a>
-        
-        <a href="#is.ge"><li><code>is.ge</code></li></a>
-        
-        <a href="#is.lt"><li><code>is.lt</code></li></a>
-        
-        <a href="#is.le"><li><code>is.le</code></li></a>
-        
-        <a href="#is.positive"><li><code>is.positive</code></li></a>
-        
-        <a href="#is.negative"><li><code>is.negative</code></li></a>
-        
-        <a href="#is.nonpositive"><li><code>is.nonpositive</code></li></a>
-        
-        <a href="#is.nonnegative"><li><code>is.nonnegative</code></li></a>
+        <a href="#is.between"><li><code>is.between</code></li></a>
         
         <a href="#is.containedIn"><li><code>is.containedIn</code></li></a>
         
+        <a href="#is.endingIn"><li><code>is.endingIn</code></li></a>
+        
+        <a href="#is.eq"><li><code>is.eq</code></li></a>
+        
         <a href="#is.extensionOf"><li><code>is.extensionOf</code></li></a>
         
-        <a href="#is.startingWith"><li><code>is.startingWith</code></li></a>
+        <a href="#is.finite"><li><code>is.finite</code></li></a>
         
-        <a href="#is.endingIn"><li><code>is.endingIn</code></li></a>
+        <a href="#is.function"><li><code>is.function</code></li></a>
+        
+        <a href="#is.ge"><li><code>is.ge</code></li></a>
+        
+        <a href="#is.gt"><li><code>is.gt</code></li></a>
+        
+        <a href="#is.in"><li><code>is.in</code></li></a>
+        
+        <a href="#is.infinity"><li><code>is.infinity</code></li></a>
+        
+        <a href="#is.integer"><li><code>is.integer</code></li></a>
         
         <a href="#is.its"><li><code>is.its</code></li></a>
         
         <a href="#is.itsLength"><li><code>is.itsLength</code></li></a>
         
-        <a href="#is.absolutely"><li><code>is.absolutely</code></li></a>
+        <a href="#is.le"><li><code>is.le</code></li></a>
+        
+        <a href="#is.lt"><li><code>is.lt</code></li></a>
+        
+        <a href="#is.missing"><li><code>is.missing</code></li></a>
+        
+        <a href="#is.na"><li><code>is.na</code></li></a>
+        
+        <a href="#is.nan"><li><code>is.nan</code></li></a>
+        
+        <a href="#is.negative"><li><code>is.negative</code></li></a>
+        
+        <a href="#is.nonnegative"><li><code>is.nonnegative</code></li></a>
+        
+        <a href="#is.nonpositive"><li><code>is.nonpositive</code></li></a>
         
         <a href="#is.not"><li><code>is.not</code></li></a>
         
+        <a href="#is.number"><li><code>is.number</code></li></a>
+        
         <a href="#is.or"><li><code>is.or</code></li></a>
         
-        <a href="#is.any"><li><code>is.any</code></li></a>
+        <a href="#is.positive"><li><code>is.positive</code></li></a>
         
-        <a href="#is.all"><li><code>is.all</code></li></a>
+        <a href="#is.startingWith"><li><code>is.startingWith</code></li></a>
         
-        <a href="#is.and"><li><code>is.and</code></li></a>
+        <a href="#is.typeof"><li><code>is.typeof</code></li></a>
         
       </ul>
+      </div>
     </div>
     <div id="main">
       <div class="moduleInfo">
@@ -90,17 +101,21 @@ argument. There are a number of ways of logically chaining predicates, see <code
       <div>
         <h4 id="is.typeof"><code>is.typeof(typ)</code></h4>
         <p>A predicate that tests if its argument has a given <code>typeof</code>.</p>
+<pre class="prettyprint source"><a href="#is.typeof"><code>is.typeof('string')('hi there!');  // true</code></a></pre>
       </div>
       
       <div>
         <h4 id="is.function"><code>is.function</code></h4>
         <p>A predicate testing that its argument is a function</p>
+<pre class="prettyprint source"><a href="#is.function"><code>is.function(is.function); // true</code></a></pre>
       </div>
       
       <div>
         <h4 id="is.number"><code>is.number</code></h4>
         <p>A predicate testing that its argument is a number
 (including infinity, NaN)</p>
+<pre class="prettyprint source"><code>is.number(23);          // true
+is.number('hi there!'); // false</code></pre>
       </div>
       
       <div>
@@ -117,6 +132,8 @@ Does not detect NaNs. See <a href="#is.na"><code>is.na</code></a> for that.</p>
       <div>
         <h4 id="is.nan"><code>is.nan</code></h4>
         <p>A predicate testing that its argument is exactly NaN</p>
+<pre class="prettyprint source"><code>is.nan(NaN);  // true
+is.nan(null); //false</code></pre>
       </div>
       
       <div>
@@ -134,6 +151,8 @@ meaning missing or NaN.</p>
         <h4 id="is.finite"><code>is.finite</code></h4>
         <p>A predicate testing that its argument is a &quot;real&quot; number
 i.e. a number that is not NaN nor Infinity</p>
+<pre class="prettyprint source"><code>is.finite(23);  // true
+is.finite(NaN); // false</code></pre>
       </div>
       
       <div>
@@ -144,12 +163,17 @@ i.e. a number that is not NaN nor Infinity</p>
       <div>
         <h4 id="is.eq"><code>is.eq(m)</code></h4>
         <p>Return a predicate testing that its argument is triple equal to <code>m</code>.</p>
+<pre class="prettyprint source"><code>is.eq(5)(3); // false
+is.eq(5)(5); // true</code></pre>
       </div>
       
       <div>
         <h4 id="is.gt"><code>is.gt(m)</code></h4>
         <p>Return a predicate testing that its argument is (finite and)
 greater than to <code>m</code>.</p>
+<pre class="prettyprint source"><code>is.gt(5)(5.2);      // true
+is.gt(5)(5);        // false
+is.gt(5)(Infinity); // false</code></pre>
       </div>
       
       <div>
@@ -191,6 +215,15 @@ less than or equal to <code>m</code>.</p>
       </div>
       
       <div>
+        <h4 id="is.between"><code>is.between(a, b, inclusive)</code></h4>
+        <p>Return a predicate to test if its argument is between <code>a</code> and <code>b</code>. If <code>inclusive</code> is true,
+the predicate accepts numbers equal to <code>a</code>, <code>b</code>. Defaults to false.
+<code>a</code> and <code>b</code> can be in either order.</p>
+<pre class="prettyprint source"><code>[1, 2, 3, 4, 5].filter(is.between(2, 5));       // [3, 4]
+[1, 2, 3, 4, 5].filter(is.between(2, 5, true)); // [2, 3, 4, 5]</code></pre>
+      </div>
+      
+      <div>
         <h4 id="is.containedIn"><code>is.containedIn(supr)</code></h4>
         <p>Return a predicate testing that its argument is contained in
 the string <code>supr</code></p>
@@ -206,12 +239,14 @@ the string <code>sub</code></p>
         <h4 id="is.startingWith"><code>is.startingWith(sub)</code></h4>
         <p>Return a predicate testing that its argument starts with
 the string <code>sub</code></p>
+<pre class="prettyprint source"><a href="#is.startingWith"><code>is.startingWith('_')('_hi'); // true</code></a></pre>
       </div>
       
       <div>
         <h4 id="is.endingIn"><code>is.endingIn(sub)</code></h4>
         <p>Return a predicate testing that its argument ends in
 the string <code>sub</code></p>
+<pre class="prettyprint source"><a href="#is.endingIn"><code>is.endingIn('.html')(filename);</code></a></pre>
       </div>
       
       <div>
@@ -221,6 +256,12 @@ will be tested against the <code>prop</code> property of their arguments.
 If <code>prop</code> is a function rather than a string, (e.g. Math.abs),
 then the follow-up predicates will be applied to the result
 of that function on their argument.</p>
+<pre class="prettyprint source"><code>// Test if obj.name starts with 'Vector'
+is.its('name').startingWith('Vector')(obj);
+// Is the array of length at least 2?
+is.its('length').ge(2)(array);
+// Is the string parsable to a positive integer?
+is.its(parseInt).ge(0)(string);</code></pre>
       </div>
       
       <div>
@@ -236,29 +277,30 @@ the absolute value of their argument.</p>
       </div>
       
       <div>
+        <h4 id="is.in"><code>is.in(container)</code></h4>
+        <p>Return a predicate that checks if its argument is &quot;in&quot; the <code>container</code>.
+If the <code>container</code> is an array, it simply checks its elements.
+If the <code>container</code> is an object, it uses <a href="#hasOwnProperty"><code>hasOwnProperty</code></a>.</p>
+      </div>
+      
+      <div>
         <h4 id="is.not"><code>is.not</code></h4>
         <p>Set a context so that follow-up predicates will negate their result before returning</p>
+<pre class="prettyprint source"><code>is.not.between(2, 5)(1); // true
+is.not.between(2, 5)(3); // false</code></pre>
       </div>
       
       <div>
         <h4 id="is.or"><code>is.or(preds)</code></h4>
         <p>Create a predicate from the disjunction of its arguments.</p>
+<pre class="prettyprint source"><a href="#is.or"><code>is.or(is.positive, is.negative); // true for all non-zero numbers</code></a></pre>
       </div>
       
       <div>
-        <h4 id="is.any"><code>is.any</code></h4>
-        <p>Synonym for <a href="#is.or"><code>is.or</code></a></p>
-      </div>
-      
-      <div>
-        <h4 id="is.all"><code>is.all(preds)</code></h4>
-        <p><a href="#is.all"><code>is.all</code></a> conjuncts its arguments.
+        <h4 id="is.and"><code>is.and(preds)</code></h4>
+        <p><a href="#is.and"><code>is.and</code></a> conjuncts its arguments.
 Arguments can be simple predicates or arrays of predicates</p>
-      </div>
-      
-      <div>
-        <h4 id="is.and"><code>is.and</code></h4>
-        <p>Synonym for <a href="#is.all"><code>is.all</code></a></p>
+<pre class="prettyprint source"><a href="#is.and"><code>is.and(is.ge(2), is.le(5)); // same as is.between(2, 5, true)</code></a></pre>
       </div>
       
       <div>
